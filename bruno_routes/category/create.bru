@@ -1,0 +1,21 @@
+meta {
+  name: create
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/api/category
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "category"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
