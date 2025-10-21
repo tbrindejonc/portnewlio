@@ -4,7 +4,7 @@ import sendJsonResponse from '@functions/api/send_json_response';
 import {prisma} from '@utils/prisma/client';
 import {CategoryCreation, categoryCreateValidator} from '@appVine/category_schemas';
 import {Category} from '@prisma/client';
-import sendCollectionResponse from '@/app/utils/functions/api/send_collection_response';
+import sendCollectionResponse from '@functions/api/send_collection_response';
 
 /**
  * Create a new category
