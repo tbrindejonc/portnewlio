@@ -1,4 +1,4 @@
-import {ApiError} from '@/app/types/api';
+import {ApiError} from '@appTypes/api';
 import {
   HTTP_NOT_FOUND,
   HTTP_SCHEMA_ERROR,
@@ -7,7 +7,7 @@ import {
   MSG_FOREIGN_KEY_ERROR,
   MSG_NOT_FOUND,
   MSG_SERVER_ERROR,
-} from '@/app/utils/constants/api';
+} from '@constants/api';
 
 /**
  * Construct and send an error response

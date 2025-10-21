@@ -19,7 +19,12 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@utils/*": ["./app/utils/*"],
+      "@appTypes/*": ["./app/types/*"],
+      "@functions/*": ["./app/utils/functions/*"],
+      "@constants/*": ["./app/utils/constants/*"],
+      "@appVine/*": ["./app/utils/vine/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "global.d.ts"],

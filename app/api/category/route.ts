@@ -1,8 +1,8 @@
-import {HTTP_CREATED} from '@/app/utils/constants/api';
-import sendErrorResponse from '@/app/utils/functions/api/send_error_response';
-import sendJsonResponse from '@/app/utils/functions/api/send_json_response';
-import {prisma} from '@/app/utils/prisma/client';
-import {CategoryCreation, categoryCreateValidator} from '@/app/utils/vine/category_schemas';
+import {HTTP_CREATED} from '@constants/api';
+import sendErrorResponse from '@functions/api/send_error_response';
+import sendJsonResponse from '@functions/api/send_json_response';
+import {prisma} from '@utils/prisma/client';
+import {CategoryCreation, categoryCreateValidator} from '@appVine/category_schemas';
 import {Category} from '@prisma/client';
 
 /**
