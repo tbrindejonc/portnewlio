@@ -14,7 +14,6 @@ const CATEGORY_CREATE_SCHEMA = vine.object({
 });
 
 const CATEGORY_UPDATE_SCHEMA = vine.object({
-  id: vine.number(),
   name: vine.string(),
 });
 
