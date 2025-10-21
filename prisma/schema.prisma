@@ -6,3 +6,83 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Image {
+  id         Int     @id @default(autoincrement())
+  name       String  @unique
+  project    Project @relation(fields: [project_id], references: [id])
+  project_id Int
+}
+
+model Highlight {
+  id         Int     @id @default(autoincrement())
+  text       String
+  project    Project @relation(fields: [project_id], references: [id])
+  project_id Int
+}
+
+model Category {
+  id         Int          @id @default(autoincrement())
+  name       String       @unique
+  Hobby      Hobby[]
+  Technology Technology[]
+}
+
+model Hobby {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  logo_name   String
+  category    Category @relation(fields: [category_id], references: [id])
+  category_id Int
+}
+
+model Technology {
+  id                    Int                     @id @default(autoincrement())
+  name                  String                  @unique
+  logo_name             String
+  category              Category                @relation(fields: [category_id], references: [id])
+  category_id           Int
+  Project_Technology    Project_Technology[]
+  Experience_Technology Experience_Technology[]
+}
+
+model Project {
+  id                 Int                  @id @default(autoincrement())
+  title              String               @unique
+  description        String
+  github             String
+  link               String
+  Image              Image[]
+  Highlight          Highlight[]
+  Project_Technology Project_Technology[]
+}
+
+model Project_Technology {
+  project_id    Int
+  technology_id Int
+
+  project    Project    @relation(fields: [project_id], references: [id])
+  technology Technology @relation(fields: [technology_id], references: [id])
+
+  @@id([project_id, technology_id])
+}
+
+model Experience {
+  id                    Int                     @id @default(autoincrement())
+  title                 String
+  society_name          String
+  work_period           String
+  description           String
+  logo_name             String
+  Experience_Technology Experience_Technology[]
+}
+
+model Experience_Technology {
+  experience_id Int
+  technology_id Int
+
+  experience Experience @relation(fields: [experience_id], references: [id])
+  technology Technology @relation(fields: [technology_id], references: [id])
+
+  @@id([experience_id, technology_id])
+}
