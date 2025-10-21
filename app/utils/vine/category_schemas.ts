@@ -27,11 +27,11 @@ const CATEGORY_DELETE_SCHEMA = vine.object({
 /* -------------------------------------------------------------------------- */
 export type Category = Infer<typeof CATEGORY_SCHEMA>;
 
-export type CategoryCreateSchema = Infer<typeof CATEGORY_CREATE_SCHEMA>;
+export type CategoryCreation = Infer<typeof CATEGORY_CREATE_SCHEMA>;
 
-export type CategoryUpdateSchema = Infer<typeof CATEGORY_UPDATE_SCHEMA>;
+export type CategoryUpdate = Infer<typeof CATEGORY_UPDATE_SCHEMA>;
 
-export type CategoryDeleteSchema = Infer<typeof CATEGORY_DELETE_SCHEMA>;
+export type CategoryDeletion = Infer<typeof CATEGORY_DELETE_SCHEMA>;
 
 /* -------------------------------------------------------------------------- */
 /*                                 Validators                                 */
