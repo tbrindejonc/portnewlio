@@ -73,3 +73,28 @@ export async function GET(_request: Request, apiParams: ApiParams): Promise<Resp
     return sendErrorResponse(error);
   }
 }
+
+/**
+ * Delete a category
+ *
+ * @param request {Request} - The incoming request object
+ * @param apiParams {ApiParams} - The API parameters
+ */
+export async function DELETE(_request: Request, apiParams: ApiParams): Promise<Response> {
+  try {
+    // get category id from params
+    const {id} = await apiParams.params;
+
+    // delete category from database
+    const deletedCategory: Category = await prisma.category.delete({
+      where: {
+        id: parseInt(id),
+      },
+    });
+
+    // return deleted category
+    return sendJsonResponse<Category>(deletedCategory, HTTP_OK);
+  } catch (error: unknown) {
+    return sendErrorResponse(error);
+  }
+}
