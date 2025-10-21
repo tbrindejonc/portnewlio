@@ -4,6 +4,7 @@ import sendJsonResponse from '@functions/api/send_json_response';
 import {prisma} from '@utils/prisma/client';
 import {CategoryCreation, categoryCreateValidator} from '@appVine/category_schemas';
 import {Category} from '@prisma/client';
+import sendCollectionResponse from '@/app/utils/functions/api/send_collection_response';
 
 /**
  * Create a new category
@@ -25,6 +26,21 @@ export async function POST(request: Request): Promise<Response> {
 
     // return created category
     return sendJsonResponse<Category>(createdCategory, HTTP_CREATED);
+  } catch (error: unknown) {
+    return sendErrorResponse(error);
+  }
+}
+
+/**
+ * Get all categories
+ */
+export async function GET(): Promise<Response> {
+  try {
+    // fetch all categories from database
+    const categories: Category[] = await prisma.category.findMany();
+
+    // return the categories collection
+    return sendCollectionResponse<Category>(categories);
   } catch (error: unknown) {
     return sendErrorResponse(error);
   }
