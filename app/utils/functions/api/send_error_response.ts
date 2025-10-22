@@ -42,7 +42,7 @@ const sendErrorResponse = (error: any): Response => {
       field: error.meta!.field_name,
       message: `Can not create a record for the ${
         error.meta!.modelName
-      } table because the record referenced by the foreign key ${error.meta!.field_name} does not exist`,
+      } table because the record referenced by the foreign key ${error.meta!.constraint} does not exist`,
     };
   }
 
