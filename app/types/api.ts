@@ -20,3 +20,11 @@ export type ApiParams = {
     id: string;
   };
 };
+
+// api link request parameters
+export type ApiLinkParams = {
+  params: {
+    id: string;
+    link_id: string;
+  };
+};
