@@ -33,10 +33,18 @@ export async function POST(request: Request): Promise<Response> {
 /**
  * Get all hobbies
  */
-export async function GET(): Promise<Response> {
+export async function GET(request: Request): Promise<Response> {
   try {
+    // get data from request
+    const {searchParams} = new URL(request.url);
+    const fullContent = searchParams.get('fullContent');
+
     // fetch all hobbies from database
-    const hobbies: Hobby[] = await prisma.hobby.findMany();
+    const hobbies: Hobby[] = await prisma.hobby.findMany({
+      include: {
+        category: !!fullContent,
+      },
+    });
 
     // return the highlights collection
     return sendCollectionResponse<Hobby>(hobbies);
