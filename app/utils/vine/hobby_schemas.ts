@@ -9,6 +9,12 @@ const HOBBY_SCHEMA = vine.object({
   name: vine.string(),
   logo_name: vine.string(),
   category_id: vine.number(),
+  category: vine
+    .object({
+      id: vine.number(),
+      name: vine.string(),
+    })
+    .optional(),
 });
 
 const HOBBY_CREATE_SCHEMA = vine.object({
