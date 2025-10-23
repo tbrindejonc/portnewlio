@@ -9,12 +9,17 @@ const HOBBY_SCHEMA = vine.object({
   name: vine.string(),
   logo_name: vine.string(),
   category_id: vine.number(),
-  category: vine
-    .object({
-      id: vine.number(),
-      name: vine.string(),
-    })
-    .optional(),
+});
+
+const HOBBY_FULL_SCHEMA = vine.object({
+  id: vine.number(),
+  name: vine.string(),
+  logo_name: vine.string(),
+  category_id: vine.number(),
+  category: vine.object({
+    id: vine.number(),
+    name: vine.string(),
+  }),
 });
 
 const HOBBY_CREATE_SCHEMA = vine.object({
@@ -38,6 +43,8 @@ const HOBBY_DELETE_SCHEMA = vine.object({
 /* -------------------------------------------------------------------------- */
 export type Hobby = Infer<typeof HOBBY_SCHEMA>;
 
+export type HobbyFull = Infer<typeof HOBBY_FULL_SCHEMA>;
+
 export type HobbyCreation = Infer<typeof HOBBY_CREATE_SCHEMA>;
 
 export type HobbyUpdate = Infer<typeof HOBBY_UPDATE_SCHEMA>;
@@ -48,6 +55,8 @@ export type HobbyDeletion = Infer<typeof HOBBY_DELETE_SCHEMA>;
 /*                                 Validators                                 */
 /* -------------------------------------------------------------------------- */
 export const HobbyValidator = vine.compile(HOBBY_SCHEMA);
+
+export const HobbyFullValidator = vine.compile(HOBBY_FULL_SCHEMA);
 
 export const HobbyCreateValidator = vine.compile(HOBBY_CREATE_SCHEMA);
 
