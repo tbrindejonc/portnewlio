@@ -3,7 +3,7 @@ import sendErrorResponse from '@functions/api/send_error_response';
 import sendJsonResponse from '@functions/api/send_json_response';
 import {prisma} from '@utils/prisma/client';
 import sendCollectionResponse from '@functions/api/send_collection_response';
-import {Hobby, HobbyCreateValidator, HobbyCreation} from '@appVine/hobby_schemas';
+import {Hobby, HobbyCreateValidator, HobbyCreation, HobbyFull} from '@appVine/hobby_schemas';
 
 /**
  * Create a new hobby
@@ -40,11 +40,14 @@ export async function GET(request: Request): Promise<Response> {
     const fullContent = searchParams.get('fullContent');
 
     // fetch all hobbies from database
-    const hobbies: Hobby[] = await prisma.hobby.findMany({
+    const hobbies: Hobby[] | HobbyFull[] = await prisma.hobby.findMany({
       include: {
         category: !!fullContent,
       },
     });
+
+    // if full content requested, return full hobbies
+    if (fullContent) return sendCollectionResponse<HobbyFull>(hobbies as HobbyFull[]);
 
     // return the highlights collection
     return sendCollectionResponse<Hobby>(hobbies);

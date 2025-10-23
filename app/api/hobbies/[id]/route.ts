@@ -3,7 +3,7 @@ import sendErrorResponse from '@functions/api/send_error_response';
 import sendJsonResponse from '@functions/api/send_json_response';
 import {prisma} from '@utils/prisma/client';
 import {ApiError, ApiParams} from '@appTypes/api';
-import {Hobby, HobbyUpdate, HobbyUpdateValidator} from '@appVine/hobby_schemas';
+import {Hobby, HobbyFull, HobbyUpdate, HobbyUpdateValidator} from '@appVine/hobby_schemas';
 
 /**
  * Update a hobby
@@ -49,7 +49,7 @@ export async function GET(request: Request, apiParams: ApiParams): Promise<Respo
     const fullContent = searchParams.get('fullContent');
 
     // get hobby from database
-    const hobby: Hobby | null = await prisma.hobby.findUnique({
+    const hobby: Hobby | HobbyFull | null = await prisma.hobby.findUnique({
       where: {
         id: parseInt(id),
       },
@@ -71,6 +71,9 @@ export async function GET(request: Request, apiParams: ApiParams): Promise<Respo
         HTTP_NOT_FOUND,
       );
     }
+
+    // if full content requested, return full hobby
+    if (fullContent) return sendJsonResponse<HobbyFull>(hobby as HobbyFull, HTTP_OK);
 
     // return hobby
     return sendJsonResponse<Hobby>(hobby, HTTP_OK);
