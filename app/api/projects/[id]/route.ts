@@ -3,7 +3,7 @@ import sendErrorResponse from '@functions/api/send_error_response';
 import sendJsonResponse from '@functions/api/send_json_response';
 import {prisma} from '@utils/prisma/client';
 import {ApiError, ApiParams} from '@appTypes/api';
-import {Project, ProjectUpdate, ProjectUpdateValidator} from '@appVine/project_schemas';
+import {Project, ProjectFull, ProjectUpdate, ProjectUpdateValidator} from '@appVine/project_schemas';
 
 /**
  * Update a project
@@ -49,7 +49,7 @@ export async function GET(request: Request, apiParams: ApiParams): Promise<Respo
     const fullContent = searchParams.get('fullContent');
 
     // get project from database
-    const project: Project | null = await prisma.project.findUnique({
+    const project: Project | ProjectFull | null = await prisma.project.findUnique({
       where: {
         id: parseInt(id),
       },
@@ -78,6 +78,9 @@ export async function GET(request: Request, apiParams: ApiParams): Promise<Respo
         HTTP_NOT_FOUND,
       );
     }
+
+    // return project with full content if requested
+    if (fullContent) return sendJsonResponse<ProjectFull>(project as ProjectFull, HTTP_OK);
 
     // return project
     return sendJsonResponse<Project>(project, HTTP_OK);

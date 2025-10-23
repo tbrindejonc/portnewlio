@@ -3,7 +3,7 @@ import sendErrorResponse from '@functions/api/send_error_response';
 import sendJsonResponse from '@functions/api/send_json_response';
 import {prisma} from '@utils/prisma/client';
 import sendCollectionResponse from '@functions/api/send_collection_response';
-import {Project, ProjectCreateValidator, ProjectCreation} from '@appVine/project_schemas';
+import {Project, ProjectCreateValidator, ProjectCreation, ProjectFull} from '@appVine/project_schemas';
 
 /**
  * Create a new project
@@ -40,10 +40,9 @@ export async function GET(request: Request): Promise<Response> {
     // get data from request
     const {searchParams} = new URL(request.url);
     const fullContent = searchParams.get('fullContent');
-    console.log(fullContent);
 
     // fetch all projects from database
-    const projects: Project[] = await prisma.project.findMany({
+    const projects: Project[] | ProjectFull[] = await prisma.project.findMany({
       include: fullContent
         ? {
             Project_Technology: {
@@ -55,6 +54,9 @@ export async function GET(request: Request): Promise<Response> {
           }
         : undefined,
     });
+
+    // return projects with full content if requested
+    if (fullContent) return sendCollectionResponse<ProjectFull>(projects as ProjectFull[]);
 
     // return the projects collection
     return sendCollectionResponse<Project>(projects);
