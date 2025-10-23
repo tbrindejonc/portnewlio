@@ -43,6 +43,11 @@ const TECHNOLOGY_LINK_PROJECT_SCHEMA = vine.object({
   project_id: vine.number(),
 });
 
+const TECHNOLOGY_LINK_EXPERIENCE_SCHEMA = vine.object({
+  technology_id: vine.number(),
+  experience_id: vine.number(),
+});
+
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                    */
 /* -------------------------------------------------------------------------- */
@@ -58,6 +63,8 @@ export type TechnologyDeletion = Infer<typeof TECHNOLOGY_DELETE_SCHEMA>;
 
 export type TechnologyLinkProject = Infer<typeof TECHNOLOGY_LINK_PROJECT_SCHEMA>;
 
+export type TechnologyLinkExperience = Infer<typeof TECHNOLOGY_LINK_EXPERIENCE_SCHEMA>;
+
 /* -------------------------------------------------------------------------- */
 /*                                 Validators                                 */
 /* -------------------------------------------------------------------------- */
@@ -72,3 +79,5 @@ export const TechnologyUpdateValidator = vine.compile(TECHNOLOGY_UPDATE_SCHEMA);
 export const TechnologyDeleteValidator = vine.compile(TECHNOLOGY_DELETE_SCHEMA);
 
 export const TechnologyLinkProjectValidator = vine.compile(TECHNOLOGY_LINK_PROJECT_SCHEMA);
+
+export const TechnologyLinkExperienceValidator = vine.compile(TECHNOLOGY_LINK_EXPERIENCE_SCHEMA);
