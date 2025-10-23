@@ -1,0 +1,23 @@
+meta {
+  name: update
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://localhost:3000/api/technologies/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "technology update",
+    "logo_name": "my_technology.png",
+    "category_id": 1
+  }
+}
+
+settings {
+  encodeUrl: true
+}

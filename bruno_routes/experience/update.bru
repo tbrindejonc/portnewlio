@@ -1,0 +1,25 @@
+meta {
+  name: update
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://localhost:3000/api/experiences/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "Fullstack Developper update",
+    "society_name": "DevSociety",
+    "work_period": "April 2025 - Now",
+    "description": "I developped their website",
+    "logo_name": "devsociety.png"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
