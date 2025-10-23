@@ -10,14 +10,14 @@ datasource db {
 model Image {
   id         Int     @id @default(autoincrement())
   name       String  @unique
-  project    Project @relation(fields: [project_id], references: [id])
+  project    Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
   project_id Int
 }
 
 model Highlight {
   id         Int     @id @default(autoincrement())
   text       String
-  project    Project @relation(fields: [project_id], references: [id])
+  project    Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
   project_id Int
 }
 
