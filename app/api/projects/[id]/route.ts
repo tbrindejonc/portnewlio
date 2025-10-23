@@ -61,6 +61,7 @@ export async function GET(request: Request, apiParams: ApiParams): Promise<Respo
               },
             },
             Highlight: true,
+            Image: true,
           }
         : undefined,
     });
