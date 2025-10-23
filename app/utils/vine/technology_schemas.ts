@@ -9,12 +9,17 @@ const TECHNOLOGY_SCHEMA = vine.object({
   name: vine.string(),
   logo_name: vine.string(),
   category_id: vine.number(),
-  category: vine
-    .object({
-      id: vine.number(),
-      name: vine.string(),
-    })
-    .optional(),
+});
+
+const TECHNOLOGY_FULL_SCHEMA = vine.object({
+  id: vine.number(),
+  name: vine.string(),
+  logo_name: vine.string(),
+  category_id: vine.number(),
+  category: vine.object({
+    id: vine.number(),
+    name: vine.string(),
+  }),
 });
 
 const TECHNOLOGY_CREATE_SCHEMA = vine.object({
@@ -43,6 +48,8 @@ const TECHNOLOGY_LINK_PROJECT_SCHEMA = vine.object({
 /* -------------------------------------------------------------------------- */
 export type Technology = Infer<typeof TECHNOLOGY_SCHEMA>;
 
+export type TechnologyFull = Infer<typeof TECHNOLOGY_FULL_SCHEMA>;
+
 export type TechnologyCreation = Infer<typeof TECHNOLOGY_CREATE_SCHEMA>;
 
 export type TechnologyUpdate = Infer<typeof TECHNOLOGY_UPDATE_SCHEMA>;
@@ -55,6 +62,8 @@ export type TechnologyLinkProject = Infer<typeof TECHNOLOGY_LINK_PROJECT_SCHEMA>
 /*                                 Validators                                 */
 /* -------------------------------------------------------------------------- */
 export const TechnologyValidator = vine.compile(TECHNOLOGY_SCHEMA);
+
+export const TechnologyFullValidator = vine.compile(TECHNOLOGY_FULL_SCHEMA);
 
 export const TechnologyCreateValidator = vine.compile(TECHNOLOGY_CREATE_SCHEMA);
 
