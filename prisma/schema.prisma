@@ -10,14 +10,14 @@ datasource db {
 model Image {
   id         Int     @id @default(autoincrement())
   name       String  @unique
-  project    Project @relation(fields: [project_id], references: [id])
+  project    Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
   project_id Int
 }
 
 model Highlight {
   id         Int     @id @default(autoincrement())
   text       String
-  project    Project @relation(fields: [project_id], references: [id])
+  project    Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
   project_id Int
 }
 
@@ -61,7 +61,7 @@ model Project_Technology {
   project_id    Int
   technology_id Int
 
-  project    Project    @relation(fields: [project_id], references: [id])
+  project    Project    @relation(fields: [project_id], references: [id], onDelete: Cascade)
   technology Technology @relation(fields: [technology_id], references: [id])
 
   @@id([project_id, technology_id])
@@ -81,7 +81,7 @@ model Experience_Technology {
   experience_id Int
   technology_id Int
 
-  experience Experience @relation(fields: [experience_id], references: [id])
+  experience Experience @relation(fields: [experience_id], references: [id], onDelete: Cascade)
   technology Technology @relation(fields: [technology_id], references: [id])
 
   @@id([experience_id, technology_id])

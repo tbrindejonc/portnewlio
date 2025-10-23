@@ -51,6 +51,7 @@ export async function GET(request: Request): Promise<Response> {
               },
             },
             Highlight: true,
+            Image: true,
           }
         : undefined,
     });

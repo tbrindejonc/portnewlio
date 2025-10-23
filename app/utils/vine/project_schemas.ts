@@ -37,6 +37,13 @@ const PROJECT_FULL_SCHEMA = vine.object({
       project_id: vine.number(),
     }),
   ),
+  Image: vine.array(
+    vine.object({
+      id: vine.number(),
+      name: vine.string(),
+      project_id: vine.number(),
+    }),
+  ),
 });
 
 const PROJECT_CREATE_SCHEMA = vine.object({
