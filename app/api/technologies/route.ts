@@ -3,7 +3,7 @@ import sendErrorResponse from '@functions/api/send_error_response';
 import sendJsonResponse from '@functions/api/send_json_response';
 import {prisma} from '@utils/prisma/client';
 import sendCollectionResponse from '@functions/api/send_collection_response';
-import {Technology, TechnologyCreateValidator, TechnologyCreation} from '@appVine/technology_schemas';
+import {Technology, TechnologyCreateValidator, TechnologyCreation, TechnologyFull} from '@appVine/technology_schemas';
 
 /**
  * Create a new technology
@@ -40,11 +40,14 @@ export async function GET(request: Request): Promise<Response> {
     const fullContent = searchParams.get('fullContent');
 
     // fetch all technologies from database
-    const technologies: Technology[] = await prisma.technology.findMany({
+    const technologies: Technology[] | TechnologyFull[] = await prisma.technology.findMany({
       include: {
         category: !!fullContent,
       },
     });
+
+    // if full content requested, return full technologies
+    if (fullContent) return sendCollectionResponse<TechnologyFull>(technologies as TechnologyFull[]);
 
     // return the technologies collection
     return sendCollectionResponse<Technology>(technologies);

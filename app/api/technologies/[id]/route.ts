@@ -3,7 +3,7 @@ import sendErrorResponse from '@functions/api/send_error_response';
 import sendJsonResponse from '@functions/api/send_json_response';
 import {prisma} from '@utils/prisma/client';
 import {ApiError, ApiParams} from '@appTypes/api';
-import {Technology, TechnologyUpdate, TechnologyUpdateValidator} from '@appVine/technology_schemas';
+import {Technology, TechnologyFull, TechnologyUpdate, TechnologyUpdateValidator} from '@appVine/technology_schemas';
 
 /**
  * Update a technology
@@ -49,7 +49,7 @@ export async function GET(request: Request, apiParams: ApiParams): Promise<Respo
     const fullContent = searchParams.get('fullContent');
 
     // get technology from database
-    const technology: Technology | null = await prisma.technology.findUnique({
+    const technology: Technology | TechnologyFull | null = await prisma.technology.findUnique({
       where: {
         id: parseInt(id),
       },
@@ -71,6 +71,9 @@ export async function GET(request: Request, apiParams: ApiParams): Promise<Respo
         HTTP_NOT_FOUND,
       );
     }
+
+    // if full content requested, return full technology
+    if (fullContent) return sendJsonResponse<TechnologyFull>(technology as TechnologyFull, HTTP_OK);
 
     // return technology
     return sendJsonResponse<Technology>(technology, HTTP_OK);
