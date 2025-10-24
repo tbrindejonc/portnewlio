@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function Home() {
   return (
-    <main className='bg-dark font-bungee text-white'>
+    <main className='bg-dark font-bungee h-full w-full text-white'>
       <section
         id='home-landing'
         className='relative flex h-screen w-full flex-col items-center justify-center space-y-[5vh] overflow-hidden xl:space-y-[10vh]'

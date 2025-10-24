@@ -1,5 +1,6 @@
 import type {Metadata} from 'next';
 import './globals.css';
+import Navbar from '@/app/components/Navbar';
 
 export const metadata: Metadata = {
   title: 'Timeuh - Portfolio',
@@ -13,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='fr'>
-      <body className=''>{children}</body>
+      <body className='flex h-full w-full flex-col items-center'>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
