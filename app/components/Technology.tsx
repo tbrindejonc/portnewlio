@@ -12,7 +12,7 @@ type Props = {
  */
 export default function Technology({technology}: Props) {
   return (
-    <div className='font-outfit flex flex-row items-center space-x-4'>
+    <div className='font-outfit flex flex-row items-center'>
       <Image
         src={`/images/logos/${technology.logo_name}`}
         alt={technology.name}
@@ -20,7 +20,7 @@ export default function Technology({technology}: Props) {
         height={500}
         className='h-auto w-10'
       />
-      <h3 className='text-xl'>{technology.name}</h3>
+      <h3 className='ps-2 text-xl'>{technology.name}</h3>
     </div>
   );
 }
