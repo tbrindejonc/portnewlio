@@ -25,7 +25,7 @@ export default function SkillsSection() {
       )}
       <div className='font-outfit flex flex-col space-y-4 px-10 xl:flex-row xl:space-y-0 xl:space-x-[10vw]'>
         <h2 className='text-center text-3xl font-bold'>Frontend</h2>
-        <div className='flex flex-row flex-wrap gap-3 xl:w-[20vw] xl:gap-5'>
+        <div className='text-creme flex flex-row flex-wrap gap-3 xl:w-[20vw] xl:gap-5'>
           {data?.frontend.map((skill: TechnologyFull) => (
             <Technology key={skill.name} technology={skill} />
           ))}
@@ -33,7 +33,7 @@ export default function SkillsSection() {
       </div>
       <div className='font-outfit flex flex-col space-y-4 px-10 xl:flex-row xl:space-y-0 xl:space-x-[10vw]'>
         <h2 className='text-center text-3xl font-bold'>Backend</h2>
-        <div className='flex flex-row flex-wrap gap-3 xl:w-[20vw] xl:gap-5'>
+        <div className='text-creme flex flex-row flex-wrap gap-3 xl:w-[20vw] xl:gap-5'>
           {data?.backend.map((skill: TechnologyFull) => (
             <Technology key={skill.name} technology={skill} />
           ))}
@@ -41,7 +41,7 @@ export default function SkillsSection() {
       </div>
       <div className='font-outfit flex flex-col space-y-4 px-10 xl:flex-row xl:space-y-0 xl:space-x-[10vw]'>
         <h2 className='text-center text-3xl font-bold'>Outils</h2>
-        <div className='flex flex-row flex-wrap gap-3 xl:w-[20vw] xl:gap-5'>
+        <div className='text-creme flex flex-row flex-wrap gap-3 xl:w-[20vw] xl:gap-5'>
           {data?.tools.map((skill: TechnologyFull) => (
             <Technology key={skill.name} technology={skill} />
           ))}
