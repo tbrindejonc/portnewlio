@@ -27,14 +27,21 @@ export const getSkills = async (): Promise<OrderedSkills> => {
 
   // order skills by category
   data.items.forEach((tech: TechnologyFull) => {
-    if (tech.category.name.toLowerCase().includes('frontend')) {
-      orderedSkills.frontend.push(tech);
-    }
-    if (tech.category.name.toLowerCase().includes('backend')) {
-      orderedSkills.backend.push(tech);
-    }
-    if (tech.category.name.toLowerCase().includes('outil')) {
-      orderedSkills.tools.push(tech);
+    switch (tech.category.name.toLowerCase()) {
+      case 'frontend':
+        orderedSkills.frontend.push(tech);
+        break;
+
+      case 'backend':
+        orderedSkills.backend.push(tech);
+        break;
+
+      case 'outil':
+        orderedSkills.tools.push(tech);
+        break;
+
+      default:
+        break;
     }
   });
 
