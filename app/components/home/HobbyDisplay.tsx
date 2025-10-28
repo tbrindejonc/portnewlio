@@ -61,12 +61,14 @@ export default function HobbyDisplay({hobby}: Props) {
   const getClassName = (type: HobbyType): string => {
     switch (type) {
       case 'book':
+        return 'h-auto w-[20vw] rounded-md xl:w-[5vw]';
+
       case 'game':
-        return 'h-auto w-[20vw] rounded-md';
+        return 'h-auto w-[20vw] rounded-md xl:w-[6vw]';
 
       case 'music':
       default:
-        return 'h-auto w-[20vw] rounded-md';
+        return 'h-auto w-[20vw] rounded-md xl:w-[6vw]';
     }
   };
 
