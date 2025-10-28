@@ -20,7 +20,7 @@ export default async function HobbiesView() {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <section
         id='home-hobbies'
-        className='flex h-fit min-h-screen w-full flex-col items-center justify-center overflow-hidden py-6'
+        className='flex h-fit min-h-screen w-full flex-col items-center justify-center space-y-6 overflow-hidden py-[10vh]'
       >
         <h2 className='text-center text-3xl'>Ce que j'aime faire</h2>
         <HobbiesSection />
