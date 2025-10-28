@@ -1,7 +1,15 @@
+import EndView from '@/app/views/EndView';
+import HobbiesView from '@/app/views/HobbiesView';
+import LandingView from '@/app/views/LandingView';
+import SkillsView from '@/app/views/SkillsView';
+
 export default function Home() {
   return (
-    <main className='bg-dark flex h-screen w-full flex-col items-center justify-center'>
-      <h1 className='font-bungee text-center text-4xl text-white'>New Portfolio !</h1>
+    <main className='bg-dark font-bungee h-full w-full text-white'>
+      <LandingView />
+      <SkillsView />
+      <HobbiesView />
+      <EndView />
     </main>
   );
 }

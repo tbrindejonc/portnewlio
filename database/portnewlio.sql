@@ -77,7 +77,9 @@ INSERT INTO "Technology" ("id", "name", "logo_name", "category_id") VALUES
 (32,	'Zod',	'zod.png',	3),
 (33,	'Vine Js',	'vine_js.png',	3),
 (34,	'React-Query',	'react_query.png',	3),
-(35,	'Vite Js',	'vite_js.png',	2);
+(35,	'Vite Js',	'vite_js.png',	2),
+(36,	'Zustand',	'zustand.png',	1),
+(37,	'Cypress',	'cypress.png',	3);
 
 INSERT INTO "Experience" ("id", "title", "society_name", "work_period", "description", "logo_name") VALUES
 (1,	'Développeur web fullstack',	'RhinoTerrain',	'Septembre 2023 à Août 2024',	'J’ai conçu, designé et réalisé un site vitrine pour leur nouveau produit, ainsi qu’une application web de gestion des clients, produits et contrats de maintenance.',	'rhinoterrain.png'),
