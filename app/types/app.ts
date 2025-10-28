@@ -23,3 +23,6 @@ export type OrderedHobbies = {
   game: HobbyFull[];
   music: HobbyFull[];
 };
+
+// hobby great categories for display purposes
+export type HobbyType = 'book' | 'game' | 'music';
