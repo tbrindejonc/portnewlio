@@ -1,6 +1,7 @@
 import {HobbyType} from '@/app/types/app';
 import {HobbyFull} from '@appVine/hobby_schemas';
 import Image from 'next/image';
+import {useState} from 'react';
 
 type Props = {
   hobby: HobbyFull;
@@ -12,6 +13,9 @@ type Props = {
  * @param hobby {HobbyFull} - The hobby to display
  */
 export default function HobbyDisplay({hobby}: Props) {
+  // clicked state for mobile view
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+
   /**
    * Get the hobby type based on its category name
    *
@@ -72,13 +76,25 @@ export default function HobbyDisplay({hobby}: Props) {
     }
   };
 
+  /**
+   * Toggle the clicked state of the hobby display for mobile view
+   */
+  const toggleClicked = () => {
+    setIsClicked(!isClicked);
+  };
+
   // determine hobby type, image path and class name
   const hobbyType: HobbyType = getHobbyType(hobby.category.name);
   const imagePath: string = getImagePath(hobbyType, hobby.logo_name);
   const className: string = getClassName(hobbyType);
 
   return (
-    <div>
+    <div className='relative' onClick={toggleClicked}>
+      <div
+        className={`bg-dark/90 absolute top-0 left-0 flex h-full w-full flex-col items-center justify-center rounded-md p-2 text-center text-white opacity-0 transition-opacity duration-500 ease-in-out hover:cursor-pointer hover:opacity-100 xl:text-lg ${isClicked ? 'opacity-100' : ''}`}
+      >
+        {hobby.name}
+      </div>
       <Image src={imagePath} alt={hobby.name} width={500} height={500} className={className} />
     </div>
   );
