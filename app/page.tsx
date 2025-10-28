@@ -1,3 +1,4 @@
+import EndView from '@/app/views/EndView';
 import HobbiesView from '@/app/views/HobbiesView';
 import LandingView from '@/app/views/LandingView';
 import SkillsView from '@/app/views/SkillsView';
@@ -8,6 +9,7 @@ export default function Home() {
       <LandingView />
       <SkillsView />
       <HobbiesView />
+      <EndView />
     </main>
   );
 }
