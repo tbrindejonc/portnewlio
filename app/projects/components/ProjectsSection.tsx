@@ -1,5 +1,7 @@
 'use client';
 
+import ProjectMobileDisplay from './ProjectMobileDisplay';
+import {ProjectFull} from '@/app/utils/vine/project_schemas';
 import {getProjects} from '@functions/data/get_projects';
 import {useQuery} from '@tanstack/react-query';
 
@@ -21,7 +23,11 @@ export default function ProjectsSection() {
       {failedFetch && (
         <h2 className='font-outfit font-bold text-red-700 xl:text-2xl'>Échec du chargement des données</h2>
       )}
-      <h1>Projets</h1>
+      <div className='flex flex-col items-center space-y-12'>
+        {data?.items.map((project: ProjectFull, index: number) => (
+          <ProjectMobileDisplay key={project.id} project={project} displayColor={index % 2 === 0 ? 'red' : 'blue'} />
+        ))}
+      </div>
     </div>
   );
 }
