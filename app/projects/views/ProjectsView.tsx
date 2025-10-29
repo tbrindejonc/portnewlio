@@ -20,7 +20,7 @@ export default async function ProjectsView() {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <section
         id='projects'
-        className='flex h-fit min-h-screen w-full flex-col items-center justify-center overflow-hidden'
+        className='flex h-fit min-h-screen w-full flex-col items-center justify-center overflow-hidden pt-[15vh]'
       >
         <ProjectsSection />
       </section>
