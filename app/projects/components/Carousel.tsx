@@ -15,6 +15,7 @@ type Props = {
  * Carousel component to display a serie of images
  *
  * @param images {ProjectImage[]} - project images to display
+ * @param displayColor {ProjectDisplayColor} - color theme to use for the carousel
  */
 export default function Carousel({images, displayColor}: Props) {
   // state to track the current image
