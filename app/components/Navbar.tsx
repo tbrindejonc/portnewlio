@@ -20,7 +20,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className='from-pred to-pblue fixed top-10 z-10 rounded-full bg-gradient-to-r p-0.5 xl:text-xl'>
+    <nav className='from-pred to-pblue fixed top-10 z-50 rounded-full bg-gradient-to-r p-0.5 xl:text-xl'>
       <div className='bg-dark flex flex-row items-center space-x-3 rounded-full p-2 text-white xl:space-x-10'>
         {
           /* Map through the links and create Link components */
