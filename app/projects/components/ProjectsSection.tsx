@@ -23,7 +23,7 @@ export default function ProjectsSection() {
       {failedFetch && (
         <h2 className='font-outfit font-bold text-red-700 xl:text-2xl'>Échec du chargement des données</h2>
       )}
-      <div className='flex flex-col items-center space-y-12'>
+      <div className='flex flex-col items-center space-y-[15vh]'>
         {data?.items.map((project: ProjectFull, index: number) => (
           <ProjectMobileDisplay key={project.id} project={project} displayColor={index % 2 === 0 ? 'red' : 'blue'} />
         ))}
