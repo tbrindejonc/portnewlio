@@ -40,7 +40,7 @@ export default function Carousel({images, displayColor}: Props) {
   };
 
   return (
-    <div className='border-obscure relative flex w-[95%] flex-row justify-center overflow-hidden rounded-xl border-4 shadow-[0_0_4px_0] shadow-white/50'>
+    <div className='border-obscure relative flex w-full flex-row justify-center overflow-hidden rounded-xl border-4 shadow-[0_0_4px_0] shadow-white/50'>
       <div
         className='bg-darklight/80 absolute top-0 left-0 z-10 flex h-full flex-col items-center justify-center px-1'
         onClick={handlePrevClick}
