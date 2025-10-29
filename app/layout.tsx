@@ -8,6 +8,11 @@ export const metadata: Metadata = {
   description: 'My personnal portfolio website',
 };
 
+/**
+ * Site root layout
+ *
+ * @param children {ReactNode} - The child components
+ */
 export default function RootLayout({
   children,
 }: Readonly<{
