@@ -1,7 +1,8 @@
 'use client';
 
 import ArrowIcon from '@/app/components/icons/ArrowIcon';
-import {ProjectDisplayColor, ProjectDisplayColorsList} from '@/app/types/app';
+import {ProjectDisplayColor} from '@/app/types/app';
+import {projectColors} from '@/app/utils/data/project_colors';
 import {Image as ProjectImage} from '@appVine/image_schemas';
 import Image from 'next/image';
 import {useState} from 'react';
@@ -24,20 +25,6 @@ export default function Carousel({images, displayColor}: Props) {
   // classes to offset images
   const imageClasses: string[] = ['translate-x-0', '-translate-x-full', '-translate-x-[200%]', '-translate-x-[300%]'];
 
-  // colors depending on project display color
-  const carouselColors: ProjectDisplayColorsList = {
-    red: {
-      primary: 'bg-pred',
-      secondary: 'bg-sred',
-      text: 'text-pred',
-    },
-    blue: {
-      primary: 'bg-pblue',
-      secondary: 'bg-sblue',
-      text: 'text-pblue',
-    },
-  };
-
   /**
    * Switch to previous image
    */
@@ -58,7 +45,7 @@ export default function Carousel({images, displayColor}: Props) {
         className='bg-darklight/80 absolute top-0 left-0 z-10 flex h-full flex-col items-center justify-center px-1'
         onClick={handlePrevClick}
       >
-        <ArrowIcon className={`${carouselColors[displayColor].text} -rotate-90`} />
+        <ArrowIcon className={`${projectColors[displayColor].text} -rotate-90`} />
       </div>
       <div className={`flex flex-row ${imageClasses[currentImage]} transition-transform duration-500 ease-in-out`}>
         {images.map((image: ProjectImage, index: number) => {
@@ -78,7 +65,7 @@ export default function Carousel({images, displayColor}: Props) {
         className='bg-darklight/80 absolute top-0 right-0 z-10 flex h-full flex-col items-center justify-center px-1'
         onClick={handleNextClick}
       >
-        <ArrowIcon className={`${carouselColors[displayColor].text} rotate-90`} />
+        <ArrowIcon className={`${projectColors[displayColor].text} rotate-90`} />
       </div>
       <div className='absolute bottom-1 flex flex-row space-x-2'>
         {images.map((_image: ProjectImage, index: number) => {
@@ -88,7 +75,7 @@ export default function Carousel({images, displayColor}: Props) {
           return (
             <div
               key={index}
-              className={`transition-color size-4 rounded-full duration-500 ease-in-out ${isActive ? carouselColors[displayColor].primary : carouselColors[displayColor].secondary}`}
+              className={`transition-color size-4 rounded-full duration-500 ease-in-out ${isActive ? projectColors[displayColor].primary : projectColors[displayColor].secondary}`}
             />
           );
         })}
