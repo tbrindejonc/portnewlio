@@ -19,17 +19,17 @@ type Props = {
  */
 export default function ProjectDescription({project, displayColor}: Props) {
   return (
-    <>
+    <div className='lg:font-outfit flex flex-col space-y-8 lg:w-[30vw]'>
       <div className='flex flex-row items-center space-x-2 self-start'>
         <SparklesIcon className={`${projectColors[displayColor].text} size-8`} />
-        <h2 className='text-3xl font-bold'>{project.title}</h2>
+        <h2 className='lg:font-bungee text-3xl font-bold'>{project.title}</h2>
       </div>
-      <p className='text-xl'>{project.description}</p>
+      <p className='text-xl lg:text-2xl'>{project.description}</p>
       <div className='flex flex-col space-y-4 self-start'>
         {project.Highlight.map((highlight: HighLight) => (
           <div key={highlight.id} className='flex flex-row items-center space-x-2'>
             <PlusIcon className={`${projectColors[displayColor].text} size-6`} />
-            <h3 className='text-creme'>{highlight.text}</h3>
+            <h3 className='text-creme lg:text-xl'>{highlight.text}</h3>
           </div>
         ))}
       </div>
@@ -38,6 +38,6 @@ export default function ProjectDescription({project, displayColor}: Props) {
           <Technology key={projectTech.technology.id} technology={projectTech.technology} purpose='projects' />
         ))}
       </div>
-    </>
+    </div>
   );
 }
