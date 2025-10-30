@@ -56,6 +56,7 @@ export default function Carousel({images, displayColor}: Props) {
               alt={`Project image ${index + 1}`}
               width={1000}
               height={1000}
+              loading='eager'
               className={'h-auto w-full min-w-full rounded-lg'}
             />
           );
