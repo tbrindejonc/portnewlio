@@ -40,9 +40,9 @@ export default function Carousel({images, displayColor}: Props) {
   };
 
   return (
-    <div className='border-obscure relative flex w-full flex-row justify-center overflow-hidden rounded-xl border-4 shadow-[0_0_4px_0] shadow-white/50'>
+    <div className='border-obscure group relative flex w-full flex-row justify-center overflow-hidden rounded-xl border-4 shadow-[0_0_4px_0] shadow-white/50 lg:w-[45vw]'>
       <div
-        className='bg-darklight/80 absolute top-0 left-0 z-10 flex h-full flex-col items-center justify-center px-1'
+        className='bg-darklight/80 absolute top-0 left-0 z-10 flex h-full flex-col items-center justify-center px-1 group-hover:cursor-pointer group-hover:opacity-100 lg:opacity-0 lg:transition-opacity lg:duration-500 lg:ease-in-out'
         onClick={handlePrevClick}
       >
         <ArrowIcon className={`${projectColors[displayColor].text} -rotate-90`} />
@@ -54,20 +54,20 @@ export default function Carousel({images, displayColor}: Props) {
               key={image.id}
               src={`/images/projects/${image.name}`}
               alt={`Project image ${index + 1}`}
-              width={500}
-              height={500}
+              width={1000}
+              height={1000}
               className={`h-auto w-full rounded-lg transition-transform duration-500 ease-in-out`}
             />
           );
         })}
       </div>
       <div
-        className='bg-darklight/80 absolute top-0 right-0 z-10 flex h-full flex-col items-center justify-center px-1'
+        className='bg-darklight/80 absolute top-0 right-0 z-10 flex h-full flex-col items-center justify-center px-1 group-hover:cursor-pointer group-hover:opacity-100 lg:opacity-0 lg:transition-opacity lg:duration-500 lg:ease-in-out'
         onClick={handleNextClick}
       >
         <ArrowIcon className={`${projectColors[displayColor].text} rotate-90`} />
       </div>
-      <div className='absolute bottom-1 flex flex-row space-x-2'>
+      <div className='absolute bottom-1 flex flex-row space-x-2 lg:bottom-3 lg:space-x-4'>
         {images.map((_image: ProjectImage, index: number) => {
           // determine if the dot is active
           const isActive: boolean = index === currentImage;
@@ -75,7 +75,7 @@ export default function Carousel({images, displayColor}: Props) {
           return (
             <div
               key={index}
-              className={`transition-color size-4 rounded-full duration-500 ease-in-out ${isActive ? projectColors[displayColor].primary : projectColors[displayColor].secondary}`}
+              className={`transition-color size-4 rounded-full duration-500 ease-in-out lg:size-3 ${isActive ? projectColors[displayColor].primary : projectColors[displayColor].secondary}`}
             />
           );
         })}
