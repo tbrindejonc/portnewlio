@@ -56,7 +56,7 @@ export default function Carousel({images, displayColor}: Props) {
               alt={`Project image ${index + 1}`}
               width={1000}
               height={1000}
-              className={`h-auto w-full rounded-lg transition-transform duration-500 ease-in-out`}
+              className={'h-auto w-full min-w-full rounded-lg'}
             />
           );
         })}
