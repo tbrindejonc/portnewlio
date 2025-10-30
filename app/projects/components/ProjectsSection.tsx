@@ -23,6 +23,8 @@ export default function ProjectsSection() {
 
   // update current project index on scroll
   useEffect(() => {
+    if (!data) return;
+
     const handleScroll = () => {
       // window height
       const sectionHeight = window.innerHeight;
@@ -32,13 +34,15 @@ export default function ProjectsSection() {
       const scrollY = window.scrollY;
       // calculate the current project index
       const index = Math.floor(scrollY / (sectionHeight - offset));
-      setCurrentProjectIndex(index);
+      // ensure the index is within bounds before setting state
+      const newIndex = index > data.items.length - 1 ? data.items.length - 1 : index;
+      setCurrentProjectIndex(newIndex);
     };
 
     // listen to window directly and remove listener when component unmounts
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [data]);
 
   // check if the data is available
   const failedFetch = !data || data.items.length === 0;
