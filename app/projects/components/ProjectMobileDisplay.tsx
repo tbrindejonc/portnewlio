@@ -9,7 +9,7 @@ type Props = {
 };
 
 /**
- * Display a project
+ * Display a project for mobile devices
  *
  * @param project {ProjectFull} - project to display
  */
