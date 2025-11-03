@@ -2,6 +2,8 @@
 
 import {useQuery} from '@tanstack/react-query';
 import {getExperiences} from '@functions/data/get_experiences';
+import {ExperienceFull} from '@appVine/experience_schemas';
+import Experience from './Experience';
 
 /**
  * Display the experiences
@@ -17,12 +19,14 @@ export default function ExperiencesSection() {
   const failedFetch = !data || data.items.length === 0;
 
   return (
-    <div className='flex flex-col items-center space-y-10'>
+    <div className='flex flex-col items-center space-y-10 p-4'>
       {failedFetch ? (
         <h2 className='font-outfit font-bold text-red-700 xl:text-2xl'>Échec du chargement des données</h2>
       ) : (
         <>
-          <h2>Experiences</h2>
+          {data.items.map((experience: ExperienceFull) => (
+            <Experience key={experience.id} experience={experience} />
+          ))}
         </>
       )}
     </div>
