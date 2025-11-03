@@ -8,7 +8,7 @@ type Props = {
 
 export default function Experience({experience}: Props) {
   return (
-    <div className='border-obscure bg-obscure/50 group relative flex w-full flex-col justify-center space-y-4 overflow-hidden rounded-xl border-4 p-4 shadow-[0_0_4px_0] shadow-white/50 lg:max-w-[40vw] lg:space-y-6'>
+    <div className='group relative flex w-full flex-col justify-center space-y-4 overflow-hidden rounded-xl bg-black/50 p-4 shadow-[0_0_4px_0] shadow-white/50 lg:max-w-[40vw] lg:space-y-6'>
       <div className='flex flex-row items-center space-x-4 lg:space-x-8'>
         <Image
           src={`/images/companies/${experience.logo_name}`}
