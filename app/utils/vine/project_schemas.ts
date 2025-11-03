@@ -46,6 +46,17 @@ const PROJECT_FULL_SCHEMA = vine.object({
   ),
 });
 
+const PROJECT_TECHNOLOGY_SCHEMA = vine.object({
+  project_id: vine.number(),
+  technology_id: vine.number(),
+  technology: vine.object({
+    id: vine.number(),
+    name: vine.string(),
+    logo_name: vine.string(),
+    category_id: vine.number(),
+  }),
+});
+
 const PROJECT_CREATE_SCHEMA = vine.object({
   title: vine.string(),
   description: vine.string(),
@@ -71,6 +82,8 @@ export type Project = Infer<typeof PROJECT_SCHEMA>;
 
 export type ProjectFull = Infer<typeof PROJECT_FULL_SCHEMA>;
 
+export type ProjectTechnology = Infer<typeof PROJECT_TECHNOLOGY_SCHEMA>;
+
 export type ProjectCreation = Infer<typeof PROJECT_CREATE_SCHEMA>;
 
 export type ProjectUpdate = Infer<typeof PROJECT_UPDATE_SCHEMA>;
@@ -83,6 +96,8 @@ export type ProjectDeletion = Infer<typeof PROJECT_DELETE_SCHEMA>;
 export const ProjectValidator = vine.compile(PROJECT_SCHEMA);
 
 export const ProjectFullValidator = vine.compile(PROJECT_FULL_SCHEMA);
+
+export const ProjectTechnologyValidator = vine.compile(PROJECT_TECHNOLOGY_SCHEMA);
 
 export const ProjectCreateValidator = vine.compile(PROJECT_CREATE_SCHEMA);
 
