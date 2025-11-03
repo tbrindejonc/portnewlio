@@ -20,7 +20,7 @@ export default async function ExperiencesView() {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <section
         id='experiences'
-        className='flex h-fit min-h-screen w-full flex-col items-center justify-center overflow-hidden pt-[15vh]'
+        className='flex h-fit min-h-screen w-full flex-col items-center justify-center overflow-hidden pt-[15vh] lg:pt-[5vh]'
       >
         <ExperiencesSection />
       </section>
