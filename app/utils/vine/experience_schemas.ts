@@ -54,6 +54,17 @@ const EXPERIENCE_DELETE_SCHEMA = vine.object({
   id: vine.number(),
 });
 
+const EXPERIENCE_TECHNOLOGY_SCHEMA = vine.object({
+  experience_id: vine.number(),
+  technology_id: vine.number(),
+  technology: vine.object({
+    id: vine.number(),
+    name: vine.string(),
+    logo_name: vine.string(),
+    category_id: vine.number(),
+  }),
+});
+
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                    */
 /* -------------------------------------------------------------------------- */
@@ -67,6 +78,8 @@ export type ExperienceUpdate = Infer<typeof EXPERIENCE_UPDATE_SCHEMA>;
 
 export type ExperienceDeletion = Infer<typeof EXPERIENCE_DELETE_SCHEMA>;
 
+export type ExperienceTechnology = Infer<typeof EXPERIENCE_TECHNOLOGY_SCHEMA>;
+
 /* -------------------------------------------------------------------------- */
 /*                                 Validators                                 */
 /* -------------------------------------------------------------------------- */
@@ -79,3 +92,5 @@ export const ExperienceCreateValidator = vine.compile(EXPERIENCE_CREATE_SCHEMA);
 export const ExperienceUpdateValidator = vine.compile(EXPERIENCE_UPDATE_SCHEMA);
 
 export const ExperienceDeleteValidator = vine.compile(EXPERIENCE_DELETE_SCHEMA);
+
+export const ExperienceTechnologyValidator = vine.compile(EXPERIENCE_TECHNOLOGY_SCHEMA);
