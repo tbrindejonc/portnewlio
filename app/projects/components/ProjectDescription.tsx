@@ -27,7 +27,7 @@ export default function ProjectDescription({project, displayColor}: Props) {
           <h2 className='lg:font-bungee text-3xl font-bold'>{project.title}</h2>
         </div>
         <div className='flex flex-row items-center space-x-4'>
-          <ProjectLink link={project.link} type={'github'} displayColor={displayColor} />
+          <ProjectLink link={project.github} type={'github'} displayColor={displayColor} />
           <ProjectLink link={project.link} type={'web'} displayColor={displayColor} />
         </div>
       </div>
