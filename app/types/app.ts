@@ -43,3 +43,10 @@ export type ProjectDisplayColorsList = {
     text: string;
   };
 };
+
+// external section item
+export type ExternalSectionItem = {
+  link: string;
+  text: string;
+  imageSrc: string;
+};
