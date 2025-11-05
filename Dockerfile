@@ -1,4 +1,4 @@
-FROM node:22-bullseye-slim AS base
+FROM node:22-slim AS base
 
 # -------------------
 # Step 1 : dependencies
