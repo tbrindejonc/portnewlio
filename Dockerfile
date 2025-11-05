@@ -1,4 +1,4 @@
-FROM node:22-bullseye AS base
+FROM node:20-bullseye AS base
 
 # -------------------
 # Step 1 : dependencies
