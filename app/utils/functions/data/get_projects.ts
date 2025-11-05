@@ -12,7 +12,7 @@ export const getProjects = async (): Promise<ApiCollection<ProjectFull>> => {
     items: [],
   };
 
-  //fetch data from the api
+  // fetch data from the api
   const response = await fetch('/api/projects?fullContent=true');
 
   // if the request failed, return empty projects

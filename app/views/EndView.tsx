@@ -4,7 +4,7 @@ import Image from 'next/image';
 /**
  * Home page end view
  */
-export default async function EndView() {
+export default function EndView() {
   return (
     <section
       id='home-end'

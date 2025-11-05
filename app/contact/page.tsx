@@ -25,9 +25,9 @@ export default function Contact() {
 
   return (
     <main className='bg-dark font-bungee flex h-screen w-full flex-col items-center justify-center space-y-8 p-4 text-white'>
-      {sections.map((section: ExternalSectionItem) => (
-        <ExternalSection key={section.link} section={section} />
-      ))}
+      {sections.map((section: ExternalSectionItem) => {
+        return <ExternalSection key={section.link} section={section} />;
+      })}
     </main>
   );
 }

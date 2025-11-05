@@ -13,7 +13,7 @@ export const getSkills = async (): Promise<OrderedSkills> => {
     tools: [],
   };
 
-  //fetch data from the api
+  // fetch data from the api
   const response = await fetch('/api/technologies?fullContent=true');
 
   // if the request failed, return empty skills

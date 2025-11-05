@@ -22,7 +22,7 @@ export default async function HobbiesView() {
         id='home-hobbies'
         className='flex h-fit min-h-screen w-full flex-col items-center justify-center space-y-12 overflow-hidden py-[10vh] xl:space-y-8 xl:py-0 xl:pt-[8vh]'
       >
-        <h2 className='text-center text-3xl xl:text-5xl'>Ce que j'aime faire</h2>
+        <h2 className='text-center text-3xl xl:text-5xl'>Ce que j&apos;aime faire</h2>
         <HobbiesSection />
       </section>
     </HydrationBoundary>

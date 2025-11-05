@@ -14,7 +14,7 @@ import {Technology, TechnologyFull, TechnologyUpdate, TechnologyUpdateValidator}
 export async function PUT(request: Request, apiParams: ApiParams): Promise<Response> {
   try {
     // read received data
-    const body: any = await request.json();
+    const body: unknown = await request.json();
     const {id} = await apiParams.params;
 
     // validate data

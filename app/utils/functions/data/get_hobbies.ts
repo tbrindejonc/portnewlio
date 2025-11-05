@@ -15,7 +15,7 @@ export const getHobbies = async (): Promise<OrderedHobbies> => {
     music: [],
   };
 
-  //fetch data from the api
+  // fetch data from the api
   const response = await fetch('/api/hobbies?fullContent=true');
 
   // if the request failed, return empty hobbies

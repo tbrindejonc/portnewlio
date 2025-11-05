@@ -13,7 +13,7 @@ import {ImageCreateValidator, ImageCreation, Image} from '@appVine/image_schemas
 export async function POST(request: Request): Promise<Response> {
   try {
     // read received data
-    const body: any = await request.json();
+    const body: unknown = await request.json();
 
     // validate data
     const validatedData: ImageCreation = await ImageCreateValidator.validate(body);

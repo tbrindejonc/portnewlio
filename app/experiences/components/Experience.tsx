@@ -26,9 +26,9 @@ export default function Experience({experience}: Props) {
       </div>
       <p className='font-outfit text-lg lg:text-xl'>{experience.description}</p>
       <div className='flex flex-row flex-wrap items-center gap-4'>
-        {experience.Experience_Technology.map((tech: ExperienceTechnology) => (
-          <Technology key={tech.technology_id} technology={tech.technology} purpose='projects' />
-        ))}
+        {experience.Experience_Technology.map((tech: ExperienceTechnology) => {
+          return <Technology key={tech.technology_id} technology={tech.technology} purpose='projects' />;
+        })}
       </div>
     </div>
   );

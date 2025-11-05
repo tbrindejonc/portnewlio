@@ -29,14 +29,18 @@ export default function Carousel({images, displayColor}: Props) {
    * Switch to previous image
    */
   const handlePrevClick = () => {
-    setCurrentImage((prevIndex: number) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+    setCurrentImage((prevIndex: number) => {
+      return prevIndex === 0 ? images.length - 1 : prevIndex - 1;
+    });
   };
 
   /**
    * Switch to next image
    */
   const handleNextClick = () => {
-    setCurrentImage((prevIndex: number) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+    setCurrentImage((prevIndex: number) => {
+      return prevIndex === images.length - 1 ? 0 : prevIndex + 1;
+    });
   };
 
   return (

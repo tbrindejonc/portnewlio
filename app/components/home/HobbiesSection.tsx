@@ -47,25 +47,25 @@ export default function HobbiesSection() {
           <div className='space-y-2'>
             <h3 className='text-2xl'>Romans</h3>
             <div className='flex flex-row flex-wrap items-center gap-4 xl:gap-6'>
-              {data?.book.map((hobby: HobbyFull) => (
-                <HobbyDisplay key={hobby.id} hobby={hobby} />
-              ))}
+              {data?.book.map((hobby: HobbyFull) => {
+                return <HobbyDisplay key={hobby.id} hobby={hobby} />;
+              })}
             </div>
           </div>
           <div className='space-y-2'>
             <h3 className='text-2xl'>Mangas</h3>
             <div className='flex flex-row flex-wrap items-center gap-4 xl:gap-6'>
-              {data?.manga.map((hobby: HobbyFull) => (
-                <HobbyDisplay key={hobby.id} hobby={hobby} />
-              ))}
+              {data?.manga.map((hobby: HobbyFull) => {
+                return <HobbyDisplay key={hobby.id} hobby={hobby} />;
+              })}
             </div>
           </div>
           <div className='space-y-2'>
             <h3 className='text-2xl'>Webtoons</h3>
             <div className='flex flex-row flex-wrap items-center gap-4 xl:gap-6'>
-              {data?.webtoon.map((hobby: HobbyFull) => (
-                <HobbyDisplay key={hobby.id} hobby={hobby} />
-              ))}
+              {data?.webtoon.map((hobby: HobbyFull) => {
+                return <HobbyDisplay key={hobby.id} hobby={hobby} />;
+              })}
             </div>
           </div>
         </section>
@@ -79,9 +79,9 @@ export default function HobbiesSection() {
               <h2 className='text-3xl font-bold text-white'>Jeux</h2>
             </div>
             <div className='flex flex-row flex-wrap items-center gap-4 xl:gap-6'>
-              {data?.game.map((hobby: HobbyFull) => (
-                <HobbyDisplay key={hobby.id} hobby={hobby} />
-              ))}
+              {data?.game.map((hobby: HobbyFull) => {
+                return <HobbyDisplay key={hobby.id} hobby={hobby} />;
+              })}
             </div>
           </section>
           <section
@@ -93,9 +93,9 @@ export default function HobbiesSection() {
               <h2 className='text-3xl font-bold text-white'>Musiques</h2>
             </div>
             <div className='flex flex-row flex-wrap items-center gap-4 xl:gap-6'>
-              {data?.music.map((hobby: HobbyFull) => (
-                <HobbyDisplay key={hobby.id} hobby={hobby} />
-              ))}
+              {data?.music.map((hobby: HobbyFull) => {
+                return <HobbyDisplay key={hobby.id} hobby={hobby} />;
+              })}
             </div>
           </section>
         </div>

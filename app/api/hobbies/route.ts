@@ -13,7 +13,7 @@ import {Hobby, HobbyCreateValidator, HobbyCreation, HobbyFull} from '@appVine/ho
 export async function POST(request: Request): Promise<Response> {
   try {
     // read received data
-    const body: any = await request.json();
+    const body: unknown = await request.json();
 
     // validate data
     const validatedData: HobbyCreation = await HobbyCreateValidator.validate(body);

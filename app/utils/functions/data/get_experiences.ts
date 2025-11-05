@@ -12,7 +12,7 @@ export const getExperiences = async (): Promise<ApiCollection<ExperienceFull>> =
     items: [],
   };
 
-  //fetch data from the api
+  // fetch data from the api
   const response = await fetch('/api/experiences?fullContent=true');
 
   // if the request failed, return empty experiences

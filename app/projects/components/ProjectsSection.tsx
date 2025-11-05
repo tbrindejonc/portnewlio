@@ -41,7 +41,9 @@ export default function ProjectsSection() {
 
     // listen to window directly and remove listener when component unmounts
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      return window.removeEventListener('scroll', handleScroll);
+    };
   }, [data]);
 
   // check if the data is available
@@ -54,13 +56,15 @@ export default function ProjectsSection() {
       ) : (
         <>
           <div id='projects-mobile' className='flex flex-col items-center space-y-[15vh] lg:hidden'>
-            {data.items.map((project: ProjectFull, index: number) => (
-              <ProjectMobileDisplay
-                key={project.id}
-                project={project}
-                displayColor={index % 2 === 0 ? 'red' : 'blue'}
-              />
-            ))}
+            {data.items.map((project: ProjectFull, index: number) => {
+              return (
+                <ProjectMobileDisplay
+                  key={project.id}
+                  project={project}
+                  displayColor={index % 2 === 0 ? 'red' : 'blue'}
+                />
+              );
+            })}
           </div>
           <div id='projects-desktop' className='hidden w-screen flex-col items-end px-[10vw] pt-[10vh] lg:flex'>
             <div className='fixed left-[10vw]'>
