@@ -18,7 +18,7 @@ export default function LandingView() {
           width={500}
           height={500}
           className={
-            'shadow-pblue/50 size-[40vw] rounded-xl object-cover object-top shadow-[0_0_4px_4px] xl:size-[15vw] xl:rounded-4xl'
+            'shadow-pblue/50 size-[40vw] rounded-xl object-cover shadow-[0_0_4px_4px] xl:size-[15vw] xl:rounded-4xl'
           }
         />
       </div>
