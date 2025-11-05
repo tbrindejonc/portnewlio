@@ -23,17 +23,17 @@ export default function HobbyDisplay({hobby}: Props) {
    */
   const getHobbyType = (categoryName: string): HobbyType => {
     switch (categoryName.toLowerCase()) {
-      case 'roman':
-      case 'manga':
-      case 'webtoon':
-      default:
-        return 'book';
-
       case 'jeu':
         return 'game';
 
       case 'musique':
         return 'music';
+
+      case 'roman':
+      case 'manga':
+      case 'webtoon':
+      default:
+        return 'book';
     }
   };
 

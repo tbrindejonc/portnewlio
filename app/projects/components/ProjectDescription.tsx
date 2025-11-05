@@ -33,12 +33,14 @@ export default function ProjectDescription({project, displayColor}: Props) {
       </div>
       <p className='text-xl lg:text-2xl'>{project.description}</p>
       <div className='flex flex-col space-y-4 self-start'>
-        {project.Highlight.map((highlight: HighLight) => (
-          <div key={highlight.id} className='flex flex-row items-center space-x-2'>
-            <PlusIcon className={`${projectColors[displayColor].text} size-6`} />
-            <h3 className='text-creme lg:text-xl'>{highlight.text}</h3>
-          </div>
-        ))}
+        {project.Highlight.map((highlight: HighLight) => {
+          return (
+            <div key={highlight.id} className='flex flex-row items-center space-x-2'>
+              <PlusIcon className={`${projectColors[displayColor].text} size-6`} />
+              <h3 className='text-creme lg:text-xl'>{highlight.text}</h3>
+            </div>
+          );
+        })}
       </div>
       <div className='flex flex-row flex-wrap items-center gap-4'>
         {project.Project_Technology.map((projectTech: ProjectTechnology) => (
