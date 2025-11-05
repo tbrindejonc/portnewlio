@@ -3,7 +3,7 @@ services:
     container_name: portnewlio-app
     build:
       context: .
-      target: production
+      target: runner
     env_file:
       - .env
     working_dir: /app

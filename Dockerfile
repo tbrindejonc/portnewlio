@@ -1,44 +1,65 @@
+FROM node:22-alpine AS base
+
 # -------------------
-# Step 1 : base
+# Step 1 : dependencies
 # -------------------
-FROM node:22-slim AS base
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    python3 \
-    libc6 \
-    git \
-    openssl
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
-EXPOSE 3000
+
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
+RUN \
+  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
+  elif [ -f package-lock.json ]; then npm ci; \
+  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
+  else echo "Lockfile not found." && exit 1; \
+  fi
+
 
 # -------------------
 # Step 2 : builder
 # -------------------
 FROM base AS builder
 WORKDIR /app
-COPY package*.json ./
-
-# Install dependencies
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npm install
 
-# Build Next.js
-RUN npm run build
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN \
+  if [ -f yarn.lock ]; then yarn run build; \
+  elif [ -f package-lock.json ]; then npm run build; \
+  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
+  else echo "Lockfile not found." && exit 1; \
+  fi
 
 # -------------------
-# Step 3 : production
+# Step 3 : production image, copy all the files and run next
 # -------------------
-FROM base AS production
+FROM base AS runner
 WORKDIR /app
-ENV NODE_ENV=production
 
-# Copy files
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/prisma ./prisma
 
+RUN mkdir -p .next/cache && chmod -R 777 .next/cache
+USER nextjs
+
+EXPOSE 3000
+
+ENV PORT=3000
+
+# server.js is created by next build from the standalone output
+ENV HOSTNAME="0.0.0.0"
 CMD ["npm", "run", "start"]
 
 # -------------------
