@@ -43,9 +43,9 @@ export default function ProjectDescription({project, displayColor}: Props) {
         })}
       </div>
       <div className='flex flex-row flex-wrap items-center gap-4'>
-        {project.Project_Technology.map((projectTech: ProjectTechnology) => (
-          <Technology key={projectTech.technology.id} technology={projectTech.technology} purpose='projects' />
-        ))}
+        {project.Project_Technology.map((projectTech: ProjectTechnology) => {
+          return <Technology key={projectTech.technology.id} technology={projectTech.technology} purpose='projects' />;
+        })}
       </div>
     </div>
   );
