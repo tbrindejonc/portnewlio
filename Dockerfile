@@ -53,6 +53,7 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/prisma ./prisma
 
 RUN mkdir -p .next/cache && chmod -R 777 .next/cache
+RUN chown -R nextjs:nodejs /app
 USER nextjs
 
 EXPOSE 3000
