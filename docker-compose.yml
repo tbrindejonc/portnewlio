@@ -1,0 +1,22 @@
+services:
+  app:
+    container_name: portnewlio-app
+    build:
+      context: .
+      target: runner
+    env_file:
+      - .env
+    working_dir: /app
+    restart: unless-stopped
+
+  database:
+    image: postgres
+    container_name: portnewlio-database
+    restart: unless-stopped
+    env_file:
+      - .env
+
+  adminer:
+    image: adminer
+    container_name: portnewlio-adminer
+    restart: unless-stopped
