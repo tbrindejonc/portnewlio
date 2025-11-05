@@ -16,15 +16,13 @@ export type ApiCollection<T> = {
 
 // parameters from an api request with an id
 export type ApiParams = {
-  params: {
-    id: string;
-  };
+  params: Promise<{id: string}>;
 };
 
 // api link request parameters
 export type ApiLinkParams = {
-  params: {
+  params: Promise<{
     id: string;
     link_id: string;
-  };
+  }>;
 };
