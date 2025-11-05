@@ -7,7 +7,6 @@ FROM base AS deps
 RUN apk add --no-cache \
     bash \
     libc6-compat \
-    libssl1.1 \
     openssl \
     git \
     curl
