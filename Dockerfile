@@ -1,4 +1,4 @@
-FROM node:20-alpine3.17 AS base
+FROM node:22-alpine AS base
 
 # -------------------
 # Step 1 : dependencies
