@@ -13,7 +13,7 @@ export const getProjects = async (): Promise<ApiCollection<ProjectFull>> => {
   };
 
   // fetch data from the api
-  const response = await fetch(`${process.env.API_URL}/api/projects?fullContent=true`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects?fullContent=true`);
 
   // if the request failed, return empty projects
   if (!response.ok) {

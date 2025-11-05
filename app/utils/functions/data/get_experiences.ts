@@ -13,7 +13,7 @@ export const getExperiences = async (): Promise<ApiCollection<ExperienceFull>> =
   };
 
   // fetch data from the api
-  const response = await fetch(`${process.env.API_URL}/api/experiences?fullContent=true`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/experiences?fullContent=true`);
 
   // if the request failed, return empty experiences
   if (!response.ok) {
