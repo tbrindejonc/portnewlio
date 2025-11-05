@@ -1,16 +1,10 @@
-FROM node:20-bullseye AS base
+FROM node:22-bullseye AS base
 
 # -------------------
 # Step 1 : dependencies
 # -------------------
 FROM base AS deps
-RUN apt-get update && apt-get install -y \
-    openssl \
-    libssl-dev \
-    ca-certificates \
-    git \
-    curl \
-  && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -y && apt-get install -y openssl
 WORKDIR /app
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
