@@ -14,7 +14,7 @@ export const getSkills = async (): Promise<OrderedSkills> => {
   };
 
   // fetch data from the api
-  const response = await fetch('/api/technologies?fullContent=true');
+  const response = await fetch(`${process.env.API_URL}/api/technologies?fullContent=true`);
 
   // if the request failed, return empty skills
   if (!response.ok) {
