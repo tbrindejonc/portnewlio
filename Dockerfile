@@ -4,12 +4,7 @@ FROM node:22-slim AS base
 # Step 1 : dependencies
 # -------------------
 FROM base AS deps
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    python3 \
-    libc6 \
-    git \
-    openssl
+RUN apt-get update -y && apt-get install -y openssl
 WORKDIR /app
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
