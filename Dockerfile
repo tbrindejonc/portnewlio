@@ -4,7 +4,7 @@ FROM node:22-alpine AS base
 # Step 1 : dependencies
 # -------------------
 FROM base AS deps
-RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libc6-compat gcc g++ make python3
 WORKDIR /app
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
