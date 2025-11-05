@@ -8,7 +8,7 @@ import {
   MSG_NOT_FOUND,
   MSG_SERVER_ERROR,
 } from '@constants/api';
-import {Prisma} from '@prisma/client';
+import {PrismaClientKnownRequestError} from '@prisma/client/runtime/library';
 
 /**
  * Construct and send an error response
@@ -26,7 +26,7 @@ const sendErrorResponse = (error: unknown): Response => {
     },
   };
 
-  if (error instanceof Prisma.PrismaClientKnownRequestError) {
+  if (error instanceof PrismaClientKnownRequestError) {
     // if the error is a duplicate error
     if (error.code === 'P2002') {
       apiError.error.message = MSG_DUPLICATE_ERROR;
