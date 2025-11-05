@@ -4,9 +4,7 @@ FROM node:22-alpine AS base
 # Step 1 : dependencies
 # -------------------
 FROM base AS deps
-RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y openssl libssl-dev ca-certificates && \
-    rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache libc6-compat openssl libssl1.1 bash
 WORKDIR /app
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
