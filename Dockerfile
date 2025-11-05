@@ -1,59 +1,44 @@
-FROM node:20-bullseye AS base
-
 # -------------------
-# Step 1 : dependencies
+# Step 1 : base
 # -------------------
-FROM base AS deps
-RUN apt-get update -y && apt-get install -y openssl
+FROM node:22-slim AS base
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    python3 \
+    libc6 \
+    git \
+    openssl
 WORKDIR /app
-
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
-RUN \
-  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
-
+EXPOSE 3000
 
 # -------------------
 # Step 2 : builder
 # -------------------
 FROM base AS builder
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+COPY package*.json ./
+
+# Install dependencies
 COPY . .
+RUN npm install
 
-ENV NEXT_TELEMETRY_DISABLED=1
-
-RUN npx prisma generate
-
-RUN \
-  if [ -f yarn.lock ]; then yarn run build; \
-  elif [ -f package-lock.json ]; then npm run build; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
+# Build Next.js
+RUN npm run build
 
 # -------------------
-# Step 3 : production image, copy all the files and run next
+# Step 3 : production
 # -------------------
-FROM base AS runner
+FROM base AS production
 WORKDIR /app
-
 ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
 
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/node_modules ./node_modules
+# Copy files
 COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/public ./public
 COPY --from=builder /app/prisma ./prisma
 
-EXPOSE 3000
-ENV PORT=3000
-
-ENV HOSTNAME="0.0.0.0"
 CMD ["npm", "run", "start"]
 
 # -------------------
