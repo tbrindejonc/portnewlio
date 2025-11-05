@@ -46,14 +46,12 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/prisma ./prisma
+COPY --from=builder --chown=nextjs /app/public ./public
+COPY --from=builder --chown=nextjs /app/package.json ./package.json
+COPY --from=builder --chown=nextjs /app/node_modules ./node_modules
+COPY --from=builder --chown=nextjs /app/.next ./.next
+COPY --from=builder --chown=nextjs /app/prisma ./prisma
 
-RUN mkdir -p .next/cache && chmod -R 777 .next/cache
-RUN chown -R nextjs:nodejs /app
 USER nextjs
 
 EXPOSE 3000
