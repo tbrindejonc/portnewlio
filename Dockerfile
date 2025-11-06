@@ -11,6 +11,8 @@ FROM base AS builder
 WORKDIR /app
 
 COPY . .
+# Generate Prisma Client
+RUN npx prisma generate
 RUN npm run build
 
 # ---------- RUNNER ----------
