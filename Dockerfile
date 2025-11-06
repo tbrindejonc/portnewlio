@@ -2,7 +2,10 @@
 FROM node:20-slim AS base
 WORKDIR /app
 
-# Install dependencies
+# Install system dependencies (needed for Prisma)
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+
+# Install JS dependencies
 COPY package.json package-lock.json* ./
 RUN npm ci --include=dev
 
@@ -16,8 +19,11 @@ RUN npx prisma generate
 RUN npm run build
 
 # ---------- RUNNER ----------
-FROM base AS runner
+FROM node:20-slim AS runner
 WORKDIR /app
+
+# Install runtime dependencies only
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -34,9 +40,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 
-# Generate Prisma Client
-RUN npx prisma generate
-# Create and open rights for Next.js cache (for optimized images)
+# Create Next.js cache dir (for optimized images)
 RUN mkdir -p .next/cache && chmod -R 777 .next/cache
 
 USER nextjs
@@ -47,8 +51,10 @@ CMD ["npm", "run", "start"]
 # -------------------
 # Step 4 : dev
 # -------------------
-FROM base AS dev
+FROM node:20-slim AS dev
 WORKDIR /app
+
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
 ENV NODE_ENV=development
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -60,7 +66,5 @@ EXPOSE 3000
 COPY package*.json ./
 RUN npm install
 COPY . .
-
-# RUN npx prisma generate
 
 CMD ["npm", "run", "dev"]
