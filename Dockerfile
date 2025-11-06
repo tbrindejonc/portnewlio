@@ -4,7 +4,6 @@ FROM node:20-alpine3.21 AS base
 # Step 1 : dependencies
 # -------------------
 FROM base AS deps
-RUN  apk add --no-cache libc6-dev gcc g++ make python3
 WORKDIR /app
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
