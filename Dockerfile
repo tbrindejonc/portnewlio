@@ -1,5 +1,5 @@
 # ---------- BASE ----------
-FROM node:20-slim AS base
+FROM node:18-slim AS base
 WORKDIR /app
 
 # Install system dependencies (needed for Prisma)
@@ -19,7 +19,7 @@ RUN npx prisma generate
 RUN npm run build
 
 # ---------- RUNNER ----------
-FROM node:20-slim AS runner
+FROM node:18-slim AS runner
 WORKDIR /app
 
 # Install runtime dependencies only
