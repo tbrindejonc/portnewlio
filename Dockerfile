@@ -1,5 +1,5 @@
 # ---------- BASE ----------
-FROM node:22-slim AS base
+FROM node:20-slim AS base
 WORKDIR /app
 
 # Install dependencies
