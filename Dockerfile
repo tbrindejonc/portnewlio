@@ -4,7 +4,7 @@ FROM node:20-alpine3.21 AS base
 # Step 1 : dependencies
 # -------------------
 FROM base AS deps
-RUN apt-get update && apt-get install -y libc6-dev gcc g++ make python3
+RUN  apk add --no-cache libc6-dev gcc g++ make python3
 WORKDIR /app
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
