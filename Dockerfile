@@ -51,6 +51,8 @@ COPY --from=builder --chown=nextjs /app/node_modules ./node_modules
 COPY --from=builder --chown=nextjs /app/.next ./.next
 COPY --from=builder --chown=nextjs /app/prisma ./prisma
 
+RUN npx prisma generate
+
 USER nextjs
 
 EXPOSE 3000
