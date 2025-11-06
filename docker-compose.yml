@@ -8,6 +8,8 @@ services:
       - .env
     working_dir: /app
     restart: unless-stopped
+    ports:
+      - '56000:3000'
 
   database:
     image: postgres
@@ -20,3 +22,5 @@ services:
     image: adminer
     container_name: portnewlio-adminer
     restart: unless-stopped
+    ports:
+      - '56080:8080'

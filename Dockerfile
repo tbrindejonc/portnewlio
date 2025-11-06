@@ -1,10 +1,10 @@
-FROM node:22-alpine AS base
+FROM node:22-slim AS base
 
 # -------------------
 # Step 1 : dependencies
 # -------------------
 FROM base AS deps
-RUN apk add --no-cache libc6-compat gcc g++ make python3
+RUN apt-get update && apt-get install -y libc6-dev gcc g++ make python3
 WORKDIR /app
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
