@@ -1,5 +1,5 @@
 # ---------- BASE ----------
-FROM node:22-alpine AS base
+FROM node:22-slim AS base
 WORKDIR /app
 
 # Install dependencies
@@ -16,7 +16,7 @@ RUN npx prisma generate
 RUN npm run build
 
 # ---------- RUNNER ----------
-FROM node:22-bullseye-slim AS runner
+FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
