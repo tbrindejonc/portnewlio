@@ -1,5 +1,5 @@
 # ---------- BASE ----------
-FROM node:18-slim AS base
+FROM node:22-slim AS base
 WORKDIR /app
 
 # Install system dependencies (needed for Prisma)
@@ -19,7 +19,7 @@ RUN npx prisma generate
 RUN npm run build
 
 # ---------- RUNNER ----------
-FROM node:18-slim AS runner
+FROM node:22-slim AS runner
 WORKDIR /app
 
 # Install runtime dependencies only
@@ -51,7 +51,7 @@ CMD ["npm", "run", "start"]
 # -------------------
 # Step 4 : dev
 # -------------------
-FROM node:20-slim AS dev
+FROM node:22-slim AS dev
 WORKDIR /app
 
 RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
