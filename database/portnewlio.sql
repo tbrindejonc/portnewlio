@@ -84,7 +84,7 @@ INSERT INTO "Technology" ("id", "name", "logo_name", "category_id") VALUES
 INSERT INTO "Experience" ("id", "title", "society_name", "work_period", "description", "logo_name") VALUES
 (1,	'Développeur web fullstack',	'RhinoTerrain',	'Septembre 2023 à Août 2024',	'J’ai conçu, designé et réalisé un site vitrine pour leur nouveau produit, ainsi qu’une application web de gestion des clients, produits et contrats de maintenance.',	'rhinoterrain.png'),
 (2,	'Développeur web fullstack',	'Gibraltaz',	'Août 2023',	'J’ai développé un site et un système de tirage au sort pour un jeu de loterie proposé par un client de l’entreprise. J’ai également ajouté des fonctionalités au produit principal de l’entreprise.',	'gibraltaz.png'),
-(3,	'Développeur web stagiaire',	'Gibraltaz',	'Février à Avril 2023',	'J''ai ajouté des fonctionnalités au produit principal de l''entreprise : une application de gestion des commerces de la ville. J''ai également fait une page récapitulative d''une commande en ligne avec un QR code.',	'gibraltaz.fr');
+(3,	'Développeur web stagiaire',	'Gibraltaz',	'Février à Avril 2023',	'J''ai ajouté des fonctionnalités au produit principal de l''entreprise : une application de gestion des commerces de la ville. J''ai également fait une page récapitulative d''une commande en ligne avec un QR code.',	'gibraltaz.png');
 
 INSERT INTO "Experience_Technology" ("experience_id", "technology_id") VALUES
 (1,	3),
