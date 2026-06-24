@@ -11,7 +11,7 @@ export default function LandingView() {
     >
       <h1 className='text-center text-5xl xl:text-7xl'>Timothée Brindejonc</h1>
       <div className='flex flex-col items-center space-y-[5vh] xl:flex-row xl:space-y-0 xl:space-x-6'>
-        <h2 className='text-creme text-center text-2xl xl:w-[30vw] xl:text-4xl'>Développeur frontend React et Vue</h2>
+        <h2 className='text-creme text-center text-2xl xl:w-[30vw] xl:text-4xl'>Développeur web fullstack</h2>
         <Image
           src={'/images/landing/me.png'}
           alt='Photo de moi'
