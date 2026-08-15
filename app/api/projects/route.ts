@@ -54,6 +54,9 @@ export async function GET(request: Request): Promise<Response> {
             Image: true,
           }
         : undefined,
+      orderBy: {
+        id: 'desc',
+      },
     });
 
     // return projects with full content if requested
