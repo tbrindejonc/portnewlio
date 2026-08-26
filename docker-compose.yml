@@ -8,6 +8,8 @@ services:
       - .env
     working_dir: /app
     restart: unless-stopped
+    networks:
+      - portnewlio-network
 
   database:
     image: postgres
@@ -15,8 +17,16 @@ services:
     restart: unless-stopped
     env_file:
       - .env
+    networks:
+      - portnewlio-network
 
   adminer:
     image: adminer
     container_name: portnewlio-adminer
     restart: unless-stopped
+    networks:
+      - portnewlio-network
+
+networks:
+  portnewlio-network:
+    driver: bridge
