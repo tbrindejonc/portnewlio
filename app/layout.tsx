@@ -4,7 +4,7 @@ import Navbar from '@/app/components/Navbar';
 import AppProviders from '@/app/providers/AppProviders';
 
 export const metadata: Metadata = {
-  title: 'Timeuh - Portfolio',
+  title: 'TBrindejonc - Portfolio',
   description: 'My personnal portfolio website',
 };
 
